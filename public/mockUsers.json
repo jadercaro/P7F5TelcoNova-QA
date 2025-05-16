@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@telconova.com",
+      "password": "1234",
+      "role": "ADMIN_HISTORIAL"
+    },
+    {
+      "id": 2,
+      "email": "usuario@ejemplo.com",
+      "password": "1234",
+      "role": "USER"
+    }
+  ]
+}

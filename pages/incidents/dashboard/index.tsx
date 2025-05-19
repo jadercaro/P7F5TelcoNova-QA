@@ -91,7 +91,7 @@ export default function Page({
       });
   });
 
-  let totalOrders: number = chartData.reduce(
+  const totalOrders: number = chartData.reduce(
     (sum, item) => sum + item.orders,
     0
   );

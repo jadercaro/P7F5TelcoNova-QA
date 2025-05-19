@@ -22,7 +22,15 @@ export function LoginForm({
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const logIn = (user: any) => {
+  type User = {
+    username: string;
+    id: string | number;
+    email: string;
+    role: string;
+    password?: string;
+  };
+
+  const logIn = (user: User) => {
     document.cookie = `username=${user.username}; path=/; SameSite=Lax`;
     document.cookie = `id=${user.id}; path=/; SameSite=Lax`;
     document.cookie = `email=${user.email}; path=/; SameSite=Lax`;
@@ -56,7 +64,7 @@ export function LoginForm({
     const data = await response.json();
 
     const user = data.users.find(
-      (user: any) => user.email === email && user.password === password
+      (user: User) => user.email === email && user.password === password
     );
 
     if (!user) {

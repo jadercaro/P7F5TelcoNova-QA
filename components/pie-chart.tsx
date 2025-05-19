@@ -3,7 +3,6 @@
 import { Pie, PieChart } from "recharts"
 
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,

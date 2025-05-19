@@ -1,8 +1,8 @@
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -10,17 +10,39 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogClose
-} from "@/components/ui/dialog"
-import { useState } from "react"
+  DialogClose,
+} from "@/components/ui/dialog";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const [showError, setShowError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState("")
+  const logIn = (user: any) => {
+    document.cookie = `username=${user.username}; path=/; SameSite=Lax`;
+    document.cookie = `id=${user.id}; path=/; SameSite=Lax`;
+    document.cookie = `email=${user.email}; path=/; SameSite=Lax`;
+  };
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const cookies = document.cookie
+      .split(";")
+      .map((c) => c.trim().split("="))
+      .reduce((acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+      }, {} as Record<string, string>);
+
+    if (cookies.username && cookies.id && cookies.email) {
+      router.replace("/incidents/dashboard");
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     // LOGICA DE PRUEBA SOLO PARA MOSTRAR EL MENSAJE DE ERROR EN DESARROLLO !!
@@ -40,11 +62,14 @@ export function LoginForm({
     if (!user) {
       setErrorMessage("Email o contraseña invalidos. Intente de nuevo.");
       setShowError(true);
-    } else if (user.role === "USER") {
+    } else if (user.role !== "ADMIN" && user.role !== "ADMIN_HISTORIAL") {
       setErrorMessage(
         "No tienes los permisos suficientes para acceder a esta sección."
       );
       setShowError(true);
+    } else {
+      logIn(user);
+      router.push("/incidents/dashboard");
     }
     // ESTE CODIGO DEBE SER REEMPLAZADO POR LA VALIDACION DE AUTENTICACION REAL !!
   };
@@ -57,12 +82,12 @@ export function LoginForm({
             <form className="p-6 md:p-8" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col items-center text-center">
-                  <img 
-                    src="/logo.png" 
+                  <img
+                    src="/logo.png"
                     alt="Telconova SupportSuite"
-                    className="" 
+                    className=""
                   />
-                  <p className="text-muted-foreground text-balance">
+                  <p className="text-muted-foreground text-left">
                     Inicia sesión para acceder al módulo histórico
                   </p>
                 </div>
@@ -106,9 +131,7 @@ export function LoginForm({
           </DialogHeader>
           <DialogFooter>
             <DialogClose asChild>
-              <Button type="button">
-                Continuar
-              </Button>
+              <Button type="button">Continuar</Button>
             </DialogClose>
           </DialogFooter>
         </DialogContent>

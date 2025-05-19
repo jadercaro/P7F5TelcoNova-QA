@@ -3,14 +3,23 @@
     {
       "id": 1,
       "email": "admin@telconova.com",
+      "username": "ADMIN",
       "password": "1234",
-      "role": "ADMIN_HISTORIAL"
+      "role": "ADMIN"
     },
     {
       "id": 2,
-      "email": "usuario@ejemplo.com",
+      "email": "usuario@telconova.com",
+      "username": "Usuario",
       "password": "1234",
       "role": "USER"
+    },
+    {
+      "id": 3,
+      "email": "tecnico@telconova.com",
+      "username": "Tecnico",
+      "password": "1234",
+      "role": "ADMIN_HISTORIAL"
     }
   ]
 }

@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Clipboard, AlarmMinus, AlarmPlus, AlarmCheck } from "lucide-react";
 import { OrderPieChart } from "@/components/pie-chart";
 import { useEffect, useState } from "react";
-import "@/styles/dashboard.css";
 
 type Props = {
   username: string;

@@ -11,7 +11,7 @@ import {
 
 type ChartDataItem = {
   status: string;
-  orders: number;
+  incidences: number;
   fill: string;
 };
 
@@ -30,7 +30,7 @@ export function OrderPieChart( { chartData}: Props) {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Pie data={chartData} dataKey="orders" nameKey="status" />
+            <Pie data={chartData} dataKey="incidences" nameKey="status" />
           </PieChart>
         </ChartContainer>
   )

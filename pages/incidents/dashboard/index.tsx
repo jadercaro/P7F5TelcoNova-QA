@@ -58,9 +58,9 @@ export default function Page({
   email: string;
 }) {
   const [chartData, setChartData] = useState([
-    { status: "ABIERTAS", orders: 0, fill: "#A7AEAE" },
-    { status: "EN PROCESO", orders: 0, fill: "#D47846" },
-    { status: "CERRADAS", orders: 0, fill: "#6B78D9" },
+    { status: "ABIERTAS", incidences: 0, fill: "#A7AEAE" },
+    { status: "EN PROCESO", incidences: 0, fill: "#D47846" },
+    { status: "CERRADAS", incidences: 0, fill: "#6B78D9" },
   ]);
 
   useEffect(() => {
@@ -70,17 +70,17 @@ export default function Page({
         setChartData([
           {
             status: "ABIERTAS",
-            orders: data.orderCount.opened,
+            incidences: data.incidenceCount.opened,
             fill: "#A7AEAE",
           },
           {
             status: "EN PROCESO",
-            orders: data.orderCount.inProcess,
+            incidences: data.incidenceCount.inProcess,
             fill: "#D47846",
           },
           {
             status: "CERRADAS",
-            orders: data.orderCount.closed,
+            incidences: data.incidenceCount.closed,
             fill: "#6B78D9",
           },
         ]);
@@ -90,8 +90,8 @@ export default function Page({
       });
   });
 
-  const totalOrders: number = chartData.reduce(
-    (sum, item) => sum + item.orders,
+  const totalIncidences: number = chartData.reduce(
+    (sum, item) => sum + item.incidences,
     0
   );
 
@@ -109,30 +109,30 @@ export default function Page({
           <div className="w-full h-1/2 grid grid-cols-1 grid-rows-4 sm:grid-cols-2 sm:grid-rows-2 gap-4 gap-x-12 p-2">
             <div className="bg-white shadow-md border border-black rounded-lg text-black flex p-10">
               <div className="h-full flex-2 flex flex-col items-center justify-around text-center">
-                <span className="text-xl">ÓRDENES TOTALES</span>
-                <span className="text-3xl">{totalOrders}</span>
+                <span className="text-xl">INCIDENCIAS TOTALES</span>
+                <span className="text-3xl">{totalIncidences}</span>
               </div>
               <Clipboard className="flex-1 w-full h-full" />
             </div>
 
             <div className="bg-white shadow-md border border-black rounded-lg text-black flex p-10">
               <div className="h-full flex-2 flex flex-col items-center justify-around text-center">
-                <span className="text-xl">ÓRDENES ABIERTAS</span>
-                <span className="text-3xl">{chartData[0].orders}</span>
+                <span className="text-xl">INCIDENCIAS ABIERTAS</span>
+                <span className="text-3xl">{chartData[0].incidences}</span>
               </div>
               <AlarmPlus className="flex-1 w-full h-full" />
             </div>
             <div className="bg-white shadow-md border border-black rounded-lg text-black flex p-10">
               <div className="h-full flex-2 flex flex-col items-center justify-around text-center">
-                <span className="text-xl">ÓRDENES EN PROCESO</span>
-                <span className="text-3xl">{chartData[1].orders}</span>
+                <span className="text-xl">INCIDENCIAS EN PROCESO</span>
+                <span className="text-3xl">{chartData[1].incidences}</span>
               </div>
               <AlarmMinus className="flex-1 w-full h-full" />
             </div>
             <div className="bg-white shadow-md border border-black rounded-lg text-black flex p-10">
               <div className="h-full flex-2 flex flex-col items-center justify-around text-center">
-                <span className="text-xl">ÓRDENES CERRADAS</span>
-                <span className="text-3xl">{chartData[2].orders}</span>
+                <span className="text-xl">INCIDENCIAS CERRADAS</span>
+                <span className="text-3xl">{chartData[2].incidences}</span>
               </div>
               <AlarmCheck className="flex-1 w-full h-full" />
             </div>
@@ -140,27 +140,27 @@ export default function Page({
 
           <div className="h-1/2 bg-white flex flex-col md:flex-row items-center justify-center p-0 border border-black rounded-lg m-2 text-black">
             <div className="w-full md:w-1/2 flex-1 flex flex-col p-5 items-center justify-center text-center text-3xl">
-              <span>ÓRDENES POR ESTADO</span>
+              <span>INCIDENCIAS POR ESTADO</span>
               <br />
               <div className="flex items-center space-x-4">
                 <div className="w-4 h-4 bg-[#A7AEAE]"></div>
                 <span>
                   ABIERTAS -{" "}
-                  {((chartData[0].orders / totalOrders) * 100).toFixed(2)}%
+                  {((chartData[0].incidences / totalIncidences) * 100).toFixed(2)}%
                 </span>
               </div>
               <div className="flex items-center space-x-4">
                 <div className="w-4 h-4 bg-[#D47846]"></div>
                 <span>
                   EN PROCESO -{" "}
-                  {((chartData[1].orders / totalOrders) * 100).toFixed(2)}%
+                  {((chartData[1].incidences / totalIncidences) * 100).toFixed(2)}%
                 </span>
               </div>
               <div className="flex items-center space-x-4">
                 <div className="w-4 h-4 bg-[#6B78D9]"></div>
                 <span>
                   CERRADAS -{" "}
-                  {((chartData[2].orders / totalOrders) * 100).toFixed(2)}%
+                  {((chartData[2].incidences / totalIncidences) * 100).toFixed(2)}%
                 </span>
               </div>
             </div>

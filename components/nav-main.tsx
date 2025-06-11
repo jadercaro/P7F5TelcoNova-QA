@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { type LucideIcon } from "lucide-react"
 
 import {
@@ -39,10 +40,12 @@ export function NavMain({
           >
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                </SidebarMenuButton>
+                <Link href={item.url} passHref>
+                  <SidebarMenuButton tooltip={item.title}>
+                    {item.icon && <item.icon />}
+                    <span>{item.title}</span>
+                  </SidebarMenuButton>
+                </Link>
               </CollapsibleTrigger>
             </SidebarMenuItem>
           </Collapsible>

@@ -25,13 +25,13 @@ export function AppSidebar({ username, email, ...props }: AppSidebarProps) {
     navMain: [
       {
         title: "Dashboard",
-        url: "#",
+        url: "/incidents/dashboard",
         icon: Trello,
         isActive: true,
       },
       {
         title: "Usuarios",
-        url: "#",
+        url: "/users",
         icon: User,
       },
       {
@@ -43,9 +43,9 @@ export function AppSidebar({ username, email, ...props }: AppSidebarProps) {
   };
 
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" className="w-1/6 min-h-screen bg-gray-200" {...props}>
       <SidebarHeader>
-        <img src="/logo.png" alt="Telconova SupportSuite" className="" />
+        <img src="/logo.png" alt="Telconova SupportSuite" className="mx-auto" />
       </SidebarHeader>
       <SidebarContent className="flex align-items justify-center">
         <NavMain items={data.navMain} />

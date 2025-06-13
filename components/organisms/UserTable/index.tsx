@@ -110,8 +110,12 @@ export default function UserTable() {
 
       {/* Modal de confirmación */}
       {showConfirmationModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded shadow-md text-center">
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          {/* Fondo oscuro */}
+          <div className="absolute inset-0 bg-black opacity-50"></div>
+
+          {/* Modal */}
+          <div className="relative bg-white p-6 rounded-lg shadow-lg text-center z-10">
             <h2 className="text-lg font-bold">Confirmación</h2>
             <p className="mt-2">¿Desea eliminar este usuario?</p>
             <div className="flex justify-center gap-4 mt-4">
@@ -134,8 +138,12 @@ export default function UserTable() {
 
       {/* Mensaje de éxito de cambio de rol */}
       {showRoleChangeSuccess && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded shadow-md text-center">
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          {/* Fondo oscuro */}
+          <div className="absolute inset-0 bg-black opacity-50"></div>
+
+          {/* Modal */}
+          <div className="relative bg-white p-6 rounded-lg shadow-lg text-center z-10">
             <h2 className="text-lg font-bold">Operación Exitosa</h2>
             <p className="mt-2">Rol actualizado exitosamente</p>
             <button
@@ -148,21 +156,27 @@ export default function UserTable() {
         </div>
       )}
 
+
       {/* Mensaje de éxito de eliminación */}
       {showDeleteSuccess && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded shadow-md text-center">
-            <h2 className="text-lg font-bold">Operación Exitosa</h2>
-            <p className="mt-2">Usuario eliminado exitosamente</p>
-            <button
-              onClick={() => setShowDeleteSuccess(false)}
-              className="mt-4 bg-[#0F172A] text-white px-4 py-2 rounded hover:bg-[#4c4c4e]"
-            >
-              Aceptar
-            </button>
-          </div>
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+        {/* Fondo oscuro translúcido */}
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+
+        {/* Contenido del modal */}
+        <div className="relative bg-white p-6 rounded-lg shadow-lg text-center z-10">
+          <h2 className="text-lg font-semibold mb-2">Operación Exitosa</h2>
+          <p className="text-sm text-gray-600 mb-4">Usuario eliminado exitosamente</p>
+          <button
+            onClick={() => setShowDeleteSuccess(false)}
+            className="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-800"
+          >
+            Aceptar
+          </button>
         </div>
-      )}
+      </div>
+    )}
+
     </div>
   );
 }

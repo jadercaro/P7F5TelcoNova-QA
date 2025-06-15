@@ -20,7 +20,7 @@ export function AppSidebar({ username, email, ...props }: AppSidebarProps) {
     user: {
       name: username,
       email: email,
-      avatar: "/avatars/shadcn.jpg",
+      avatar: "",
     },
     navMain: [
       {
@@ -43,7 +43,7 @@ export function AppSidebar({ username, email, ...props }: AppSidebarProps) {
   };
 
   return (
-    <Sidebar collapsible="icon" className="w-1/6 min-h-screen bg-gray-200" {...props}>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <img src="/logo.png" alt="Telconova SupportSuite" className="mx-auto" />
       </SidebarHeader>

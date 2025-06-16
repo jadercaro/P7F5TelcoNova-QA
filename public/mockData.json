@@ -1,7 +1,229 @@
 {
-    "incidenceCount": {
-        "opened": 300,
-        "inProcess": 200,
-        "closed": 187
-    }
+	"incidents": [
+		{
+			"id": 1,
+			"state": "closed",
+			"clientName": "Ana",
+			"description": "Problema con la impresora.",
+			"assignedTechnician": "Luis",
+			"creationDate": "2025-06-10T14:23:00.123Z",
+			"closingDate": "2025-06-11T14:23:00.123Z"
+		},
+		{
+			"id": 2,
+			"state": "opened",
+			"clientName": "Jorge",
+			"description": "No hay acceso a internet.",
+			"assignedTechnician": "Pedro",
+			"creationDate": "2025-06-12T09:10:45.321Z",
+			"closingDate": "2025-06-13T09:10:45.321Z"
+		},
+		{
+			"id": 3,
+			"state": "inProgress",
+			"clientName": "Lucía",
+			"description": "Error al iniciar el sistema.",
+			"assignedTechnician": "Sofía",
+			"creationDate": "2025-06-14T17:30:22.456Z",
+			"closingDate": "2025-06-15T17:30:22.456Z"
+		},
+		{
+			"id": 4,
+			"state": "closed",
+			"clientName": "Marcos",
+			"description": "Solicitud de actualización de software.",
+			"assignedTechnician": "Carlos",
+			"creationDate": "2025-06-13T11:15:00.789Z",
+			"closingDate": "2025-06-14T11:15:00.789Z"
+		},
+		{
+			"id": 5,
+			"state": "opened",
+			"clientName": "Camila",
+			"description": "La computadora no enciende.",
+			"assignedTechnician": "Ana",
+			"creationDate": "2025-06-15T08:45:30.987Z",
+			"closingDate": "2025-06-16T08:45:30.987Z"
+		},
+		{
+			"id": 6,
+			"state": "inProgress",
+			"clientName": "Juan",
+			"description": "Fallo en el disco duro.",
+			"assignedTechnician": "Mario",
+			"creationDate": "2025-06-11T13:00:00.654Z",
+			"closingDate": "2025-06-12T13:00:00.654Z"
+		},
+		{
+			"id": 7,
+			"state": "closed",
+			"clientName": "Elena",
+			"description": "No funciona el correo electrónico.",
+			"assignedTechnician": "Laura",
+			"creationDate": "2025-06-09T10:20:15.201Z",
+			"closingDate": "2025-06-10T10:20:15.201Z"
+		},
+		{
+			"id": 8,
+			"state": "opened",
+			"clientName": "Diego",
+			"description": "Error de red.",
+			"assignedTechnician": "Javier",
+			"creationDate": "2025-06-15T19:30:40.888Z",
+			"closingDate": "2025-06-16T19:30:40.888Z"
+		},
+		{
+			"id": 9,
+			"state": "inProgress",
+			"clientName": "Valeria",
+			"description": "La aplicación se cierra inesperadamente.",
+			"assignedTechnician": "Esteban",
+			"creationDate": "2025-06-13T16:10:05.432Z",
+			"closingDate": "2025-06-14T16:10:05.432Z"
+		},
+		{
+			"id": 10,
+			"state": "closed",
+			"clientName": "Rodrigo",
+			"description": "Pantalla azul al arrancar.",
+			"assignedTechnician": "Andrés",
+			"creationDate": "2025-06-10T07:00:00.100Z",
+			"closingDate": "2025-06-11T07:00:00.100Z"
+		},
+		{
+			"id": 11,
+			"state": "opened",
+			"clientName": "Fernanda",
+			"description": "No reconoce el dispositivo USB.",
+			"assignedTechnician": "Claudia",
+			"creationDate": "2025-06-11T12:30:00.000Z",
+			"closingDate": "2025-06-12T12:30:00.000Z"
+		},
+		{
+			"id": 12,
+			"state": "inProgress",
+			"clientName": "Ricardo",
+			"description": "Problemas con la conexión VPN.",
+			"assignedTechnician": "Pablo",
+			"creationDate": "2025-06-13T15:00:10.999Z",
+			"closingDate": "2025-06-14T15:00:10.999Z"
+		},
+		{
+			"id": 13,
+			"state": "closed",
+			"clientName": "Natalia",
+			"description": "Solicitud de instalación de programa.",
+			"assignedTechnician": "Daniela",
+			"creationDate": "2025-06-12T18:20:00.000Z",
+			"closingDate": "2025-06-13T18:20:00.000Z"
+		},
+		{
+			"id": 14,
+			"state": "opened",
+			"clientName": "Gustavo",
+			"description": "La cámara web no funciona.",
+			"assignedTechnician": "Roberto",
+			"creationDate": "2025-06-14T14:10:30.000Z",
+			"closingDate": "2025-06-15T14:10:30.000Z"
+		},
+		{
+			"id": 15,
+			"state": "inProgress",
+			"clientName": "Isabel",
+			"description": "Problema de lentitud general.",
+			"assignedTechnician": "Raúl",
+			"creationDate": "2025-06-15T10:45:25.120Z",
+			"closingDate": "2025-06-16T10:45:25.120Z"
+		},
+		{
+			"id": 16,
+			"state": "closed",
+			"clientName": "Cristina",
+			"description": "Fallo en la sincronización de archivos.",
+			"assignedTechnician": "Martín",
+			"creationDate": "2025-06-12T08:30:00.789Z",
+			"closingDate": "2025-06-13T08:30:00.789Z"
+		},
+		{
+			"id": 17,
+			"state": "opened",
+			"clientName": "Santiago",
+			"description": "Configuración de impresora remota.",
+			"assignedTechnician": "Lucía",
+			"creationDate": "2025-06-11T14:00:00.000Z",
+			"closingDate": "2025-06-12T14:00:00.000Z"
+		},
+		{
+			"id": 18,
+			"state": "inProgress",
+			"clientName": "Alejandra",
+			"description": "Problemas con el sonido.",
+			"assignedTechnician": "Cristian",
+			"creationDate": "2025-06-09T17:00:00.000Z",
+			"closingDate": "2025-06-10T17:00:00.000Z"
+		},
+		{
+			"id": 19,
+			"state": "closed",
+			"clientName": "Mateo",
+			"description": "Recuperación de contraseña.",
+			"assignedTechnician": "Bruno",
+			"creationDate": "2025-06-10T16:15:15.222Z",
+			"closingDate": "2025-06-11T16:15:15.222Z"
+		},
+		{
+			"id": 20,
+			"state": "opened",
+			"clientName": "Renata",
+			"description": "Configuración de red Wi-Fi.",
+			"assignedTechnician": "Gabriel",
+			"creationDate": "2025-06-13T08:45:00.000Z",
+			"closingDate": "2025-06-14T08:45:00.000Z"
+		},
+		{
+			"id": 21,
+			"state": "inProgress",
+			"clientName": "Emilia",
+			"description": "Bloqueo de cuenta.",
+			"assignedTechnician": "Miguel",
+			"creationDate": "2025-06-14T09:30:00.000Z",
+			"closingDate": "2025-06-15T09:30:00.000Z"
+		},
+		{
+			"id": 22,
+			"state": "closed",
+			"clientName": "Ignacio",
+			"description": "Solicitud de acceso remoto.",
+			"assignedTechnician": "Julieta",
+			"creationDate": "2025-06-15T13:00:00.000Z",
+			"closingDate": "2025-06-16T13:00:00.000Z"
+		},
+		{
+			"id": 23,
+			"state": "opened",
+			"clientName": "Carolina",
+			"description": "La pantalla está negra.",
+			"assignedTechnician": "Federico",
+			"creationDate": "2025-06-16T09:00:00.000Z",
+			"closingDate": "2025-06-17T09:00:00.000Z"
+		},
+		{
+			"id": 24,
+			"state": "inProgress",
+			"clientName": "Agustín",
+			"description": "Solicita respaldo de información.",
+			"assignedTechnician": "Tamara",
+			"creationDate": "2025-06-16T11:30:00.000Z",
+			"closingDate": "2025-06-17T11:30:00.000Z"
+		},
+		{
+			"id": 25,
+			"state": "closed",
+			"clientName": "Martina",
+			"description": "Instalación de antivirus.",
+			"assignedTechnician": "Nicolás",
+			"creationDate": "2025-06-16T13:45:00.000Z",
+			"closingDate": "2025-06-17T13:45:00.000Z"
+		}
+	]
 }

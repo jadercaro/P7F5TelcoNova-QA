@@ -1,31 +1,18 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar, AppSidebarProps } from "@/components/organisms/AppSidebar";
 import {
   SidebarInset,
 } from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
 import { Clipboard, AlarmMinus, AlarmPlus, AlarmCheck } from "lucide-react";
-import { OrderPieChart } from "@/components/pie-chart";
+import { IncidentPieChart } from "@/components/molecules/IncidentPieChart";
 import { useEffect, useState } from "react";
-
-type Props = {
-  username: string;
-  email: string;
-};
-
-function parseCookies(cookieHeader: string): Record<string, string> {
-  return cookieHeader
-    .split(";")
-    .map((c) => c.trim().split("="))
-    .reduce((acc, [key, val]) => {
-      if (key && val) acc[key] = decodeURIComponent(val);
-      return acc;
-    }, {} as Record<string, string>);
-}
+import { parseCookies } from "@/lib/utils";
+import { Incident } from "@/lib/models";
+import { IncidentDialog } from "@/components/organisms/IncidentDialog";
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext
-): Promise<GetServerSidePropsResult<Props>> {
+): Promise<GetServerSidePropsResult<AppSidebarProps>> {
   const cookieHeader = context.req.headers.cookie || "";
   const cookies = parseCookies(cookieHeader);
 
@@ -48,7 +35,7 @@ export async function getServerSideProps(
   };
 }
 
-export default function Page({
+export default function DashboardPage({
   username,
   email,
 }: {
@@ -65,20 +52,30 @@ export default function Page({
     fetch("/mockData.json")
       .then((res) => res.json())
       .then((data) => {
+        const countByState = {
+          opened: 0,
+          inProgress: 0,
+          closed: 0
+        }
+
+        data.incidents.forEach((incident: Incident) => {
+          if (countByState[incident.state] !== undefined) countByState[incident.state]++;
+        })
+
         setChartData([
           {
             status: "ABIERTAS",
-            incidences: data.incidenceCount.opened,
+            incidences: countByState.opened,
             fill: "#A7AEAE",
           },
           {
             status: "EN PROCESO",
-            incidences: data.incidenceCount.inProcess,
+            incidences: countByState.inProgress,
             fill: "#D47846",
           },
           {
             status: "CERRADAS",
-            incidences: data.incidenceCount.closed,
+            incidences: countByState.closed,
             fill: "#6B78D9",
           },
         ]);
@@ -93,13 +90,15 @@ export default function Page({
     0
   );
 
+  const [openDialog, setOpenDialog] = useState(false);
+
   return (
     <>
       <AppSidebar username={username} email={email} />
       <SidebarInset className="bg-white">
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4 w-full justify-end">
-            <Button className="bg-[#0F172A]">Crear incidente</Button>
+            <IncidentDialog open={openDialog} onOpenChange={setOpenDialog} initialData={undefined} mode="create"/>
           </div>
         </header>
         <div className="w-full h-full flex flex-col">
@@ -162,7 +161,7 @@ export default function Page({
               </div>
             </div>
             <div className="w-full md:w-1/2 flex-1">
-              <OrderPieChart chartData={chartData} />
+              <IncidentPieChart chartData={chartData} />
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, parseCookies } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -24,7 +24,7 @@ export function LoginForm({
 
   type User = {
     username: string;
-    id: string | number;
+    id: number;
     email: string;
     role: string;
     password?: string;
@@ -39,18 +39,12 @@ export function LoginForm({
   const router = useRouter();
 
   useEffect(() => {
-    const cookies = document.cookie
-      .split(";")
-      .map((c) => c.trim().split("="))
-      .reduce((acc, [key, value]) => {
-        acc[key] = value;
-        return acc;
-      }, {} as Record<string, string>);
+    const cookies = parseCookies(document.cookie);
 
     if (cookies.username && cookies.id && cookies.email) {
       router.replace("/incidents/dashboard");
     }
-  }, []);
+  },);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     // LOGICA DE PRUEBA SOLO PARA MOSTRAR EL MENSAJE DE ERROR EN DESARROLLO !!

@@ -12,7 +12,7 @@ type Props = {
 export default function Select({ value, onChange, roles }: Props) {
   return (
     <SelectPrimitive.Root value={value} onValueChange={onChange}>
-      <SelectPrimitive.Trigger className="flex items-center justify-between w-full border px-2 py-1 rounded text-sm">
+      <SelectPrimitive.Trigger className="text-black flex items-center justify-between w-full border px-2 py-1 rounded text-sm">
         <SelectPrimitive.Value />
         <ChevronDown className="ml-2 h-4 w-4" />
       </SelectPrimitive.Trigger>
@@ -23,7 +23,7 @@ export default function Select({ value, onChange, roles }: Props) {
               <SelectPrimitive.Item
                 key={role}
                 value={role}
-                className="px-3 py-1 flex items-center gap-2 cursor-pointer hover:bg-gray-100"
+                className="text-black px-3 py-1 flex items-center gap-2 cursor-pointer hover:bg-gray-100"
               >
                 <SelectPrimitive.ItemIndicator>
                   <Check className="h-4 w-4" />

@@ -19,7 +19,7 @@ type Props = {
   chartData: ChartDataItem[];
 };
 
-export function OrderPieChart( { chartData}: Props) {
+export function IncidentPieChart( { chartData}: Props) {
   return (
         <ChartContainer
           config={{}}

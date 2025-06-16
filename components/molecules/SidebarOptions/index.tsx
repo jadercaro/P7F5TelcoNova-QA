@@ -14,7 +14,7 @@ import {
   SidebarMenuItem
 } from "@/components/ui/sidebar"
 
-export function NavMain({
+export function SidebarOptions({
   items,
 }: {
   items: {
@@ -41,7 +41,7 @@ export function NavMain({
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <Link href={item.url} passHref>
-                  <SidebarMenuButton tooltip={item.title}>
+                  <SidebarMenuButton className="cursor-pointer" tooltip={item.title}>
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
                   </SidebarMenuButton>

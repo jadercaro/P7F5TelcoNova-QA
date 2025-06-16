@@ -1,16 +1,15 @@
 import * as React from "react";
 import { Trello, User, FileClock } from "lucide-react";
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
+import { SidebarOptions } from "@/components/molecules/SidebarOptions";
+import { UserNav } from "@/components/molecules/UserNav";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarRail,
 } from "@/components/ui/sidebar";
 
-type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
+export type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
   username: string,
   email: string
 };
@@ -36,7 +35,7 @@ export function AppSidebar({ username, email, ...props }: AppSidebarProps) {
       },
       {
         title: "Historial",
-        url: "#",
+        url: "/incidents/history",
         icon: FileClock,
       },
     ],
@@ -48,12 +47,11 @@ export function AppSidebar({ username, email, ...props }: AppSidebarProps) {
         <img src="/logo.png" alt="Telconova SupportSuite" className="mx-auto" />
       </SidebarHeader>
       <SidebarContent className="flex align-items justify-center">
-        <NavMain items={data.navMain} />
+        <SidebarOptions items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <UserNav user={data.user} />
       </SidebarFooter>
-      <SidebarRail />
     </Sidebar>
   );
 }

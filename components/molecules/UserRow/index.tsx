@@ -20,7 +20,7 @@ export default function UserRow({ name, email, role, onRoleChange, onDelete }: U
 
   return (
     <div className="grid grid-cols-4 items-center px-4 py-3 border-b hover:bg-gray-50 transition text-sm">
-      <div className="font-medium">{name}</div>
+      <div className="text-black font-medium">{name}</div>
 
       <div className="text-gray-700">{email}</div>
 

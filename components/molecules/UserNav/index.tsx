@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/sidebar";
 
 
-export function NavUser({
+export function UserNav({
   user,
 }: {
   user: {
@@ -60,7 +60,7 @@ export function NavUser({
         {/* Selector de roles en el área central */}
       </SidebarMenuItem>
       <SidebarMenuItem>
-        <SidebarMenuButton onClick={logOut}>
+        <SidebarMenuButton onClick={logOut} className="cursor-pointer">
           <LogOut className="mr-2" />
           Cerrar sesión
         </SidebarMenuButton>

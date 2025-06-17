@@ -13,9 +13,9 @@ export async function getServerSideProps(
   const cookieHeader = context.req.headers.cookie || "";
   const cookies = parseCookies(cookieHeader);
 
-  const { username, id, email } = cookies;
+  const { username} = cookies;
 
-  if (!username || !id || !email) {
+  if (!username ) {
     return {
       redirect: {
         destination: "/login",
@@ -27,12 +27,11 @@ export async function getServerSideProps(
   return {
     props: {
       username,
-      email,
     },
   };
 }
 
-export default function HistoryPage({ username, email }: { username: string; email: string }) {
+export default function HistoryPage({ username }: { username: string }) {
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [incidentToEdit, setIncidentToEdit] = useState<Incident | undefined>(undefined);
@@ -52,7 +51,7 @@ export default function HistoryPage({ username, email }: { username: string; ema
 
   return (
     <>
-      <AppSidebar username={username} email={email} />
+      <AppSidebar username={username} />
       <SidebarInset className="bg-white p-10">
         <div className="border rounded-[20px]">
           <IncidentTable incidents={incidents} onRowClick={handleRowClick} />

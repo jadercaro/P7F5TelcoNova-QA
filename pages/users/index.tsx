@@ -7,7 +7,7 @@ export default function UsersPage() {
   return (
     <>
       {/* Reducir el ancho del sidebar */}
-      <AppSidebar username="TELCONOVA USER" email="correo@telconova.com.co"/>
+      <AppSidebar username="TELCONOVA USER" />
       <SidebarInset className="bg-white">
       {/* Expandir el contenido principal */}
         <div className="w-full max-w-6xl bg-white p-6 rounded shadow mx-auto">

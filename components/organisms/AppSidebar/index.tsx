@@ -10,15 +10,13 @@ import {
 } from "@/components/ui/sidebar";
 
 export type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
-  username: string,
-  email: string
+  username: string
 };
 
-export function AppSidebar({ username, email, ...props }: AppSidebarProps) {
+export function AppSidebar({ username, ...props }: AppSidebarProps) {
   const data = {
     user: {
       name: username,
-      email: email,
       avatar: "",
     },
     navMain: [

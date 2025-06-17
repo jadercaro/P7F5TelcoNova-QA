@@ -16,9 +16,9 @@ export async function getServerSideProps(
   const cookieHeader = context.req.headers.cookie || "";
   const cookies = parseCookies(cookieHeader);
 
-  const { username, id, email } = cookies;
+  const { username } = cookies;
 
-  if (!username || !id || !email) {
+  if (!username ) {
     return {
       redirect: {
         destination: "/login",
@@ -30,17 +30,14 @@ export async function getServerSideProps(
   return {
     props: {
       username,
-      email,
     },
   };
 }
 
 export default function DashboardPage({
   username,
-  email,
 }: {
   username: string;
-  email: string;
 }) {
   const [chartData, setChartData] = useState([
     { status: "ABIERTAS", incidences: 0, fill: "#A7AEAE" },
@@ -94,7 +91,7 @@ export default function DashboardPage({
 
   return (
     <>
-      <AppSidebar username={username} email={email} />
+      <AppSidebar username={username}  />
       <SidebarInset className="bg-white">
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4 w-full justify-end">

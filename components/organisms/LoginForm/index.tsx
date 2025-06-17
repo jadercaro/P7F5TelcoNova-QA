@@ -1,4 +1,4 @@
-import { cn, parseCookies } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,13 @@ import {
 } from "@/components/ui/dialog";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { jwtDecode } from "jwt-decode";
+// 🟢 Tipo del payload del token JWT (ajústalo si tu token tiene más campos)
+type JwtPayload = {
+  sub: string; // nombre de usuario o email
+  iat: number;
+  exp: number;
+};
 
 export function LoginForm({
   className,
@@ -21,59 +28,66 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  type User = {
-    username: string;
-    id: number;
-    email: string;
-    role: string;
-    password?: string;
-  };
-
-  const logIn = (user: User) => {
-    document.cookie = `username=${user.username}; path=/; SameSite=Lax`;
-    document.cookie = `id=${user.id}; path=/; SameSite=Lax`;
-    document.cookie = `email=${user.email}; path=/; SameSite=Lax`;
-  };
-
   const router = useRouter();
 
   useEffect(() => {
-    const cookies = parseCookies(document.cookie);
+    const cookies = document.cookie
+      .split(";")
+      .map((c) => c.trim().split("="))
+      .reduce((acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+      }, {} as Record<string, string>);
 
-    if (cookies.username && cookies.id && cookies.email) {
+    // 🟢 Verifica solo username (ya que ahora lo extraemos del token)
+    if (cookies.username) {
       router.replace("/incidents/dashboard");
     }
-  },);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // LOGICA DE PRUEBA SOLO PARA MOSTRAR EL MENSAJE DE ERROR EN DESARROLLO !!
     e.preventDefault();
 
     const form = e.currentTarget;
-    const email = form.email.value;
+    const username = form.username.value;
     const password = form.password.value;
 
-    const response = await fetch("/mockUsers.json");
-    const data = await response.json();
+    try {
+      const response = await fetch("https://supportsuite-backend.onrender.com/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-    const user = data.users.find(
-      (user: User) => user.email === email && user.password === password
-    );
+      if (!response.ok) {
+        throw new Error("Email o contraseña inválidos");
+      }
 
-    if (!user) {
-      setErrorMessage("Email o contraseña invalidos. Intente de nuevo.");
+      const data = await response.json();
+
+      // 🟢 Decodifica el token
+      const decoded = jwtDecode<JwtPayload>(data.token);
+
+      // 🟢 Guarda el token y extrae info del token para las cookies
+      localStorage.setItem("token", data.token);
+      document.cookie = `username=${decoded.sub}; path=/`;
+
+      console.log("Token recibido:", data.token);
+      console.log("Usuario decodificado:", decoded.sub);
+      console.log("Redirigiendo al dashboard...");
+
+      router.push("/incidents/dashboard/");
+
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage("Ocurrió un error inesperado.");
+      }
       setShowError(true);
-    } else if (user.role !== "ADMIN" && user.role !== "ADMIN_HISTORIAL") {
-      setErrorMessage(
-        "No tienes los permisos suficientes para acceder a esta sección."
-      );
-      setShowError(true);
-    } else {
-      logIn(user);
-      router.push("/incidents/dashboard");
     }
-    // ESTE CODIGO DEBE SER REEMPLAZADO POR LA VALIDACION DE AUTENTICACION REAL !!
   };
 
   return (
@@ -94,11 +108,11 @@ export function LoginForm({
                   </p>
                 </div>
                 <div className="grid gap-3">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="username">Nombre de usuario</Label>
                   <Input
-                    id="email"
-                    type="email"
-                    placeholder="correo@ejemplo.com"
+                    id="username"
+                    type="text"
+                    placeholder="usuario"
                     required
                   />
                 </div>

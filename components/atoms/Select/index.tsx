@@ -3,11 +3,11 @@
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { Check, ChevronDown } from "lucide-react";
 
-type Props = {
+type Props = Readonly<{
   value: string;
   onChange: (value: string) => void;
   roles: string[]; // Lista de roles dinámicos
-};
+}>;
 
 export default function Select({ value, onChange, roles }: Props) {
   return (

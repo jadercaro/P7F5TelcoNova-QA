@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export async function getServerSideProps(
   context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<AppSidebarProps>> {
-  const cookieHeader = context.req.headers.cookie || "";
+  const cookieHeader = context.req.headers.cookie ?? "";
   const cookies = parseCookies(cookieHeader);
 
   const { username} = cookies;
@@ -31,7 +31,7 @@ export async function getServerSideProps(
   };
 }
 
-export default function HistoryPage({ username }: { username: string }) {
+export default function HistoryPage({ username }: Readonly<{ username: string }>) {
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [incidentToEdit, setIncidentToEdit] = useState<Incident | undefined>(undefined);

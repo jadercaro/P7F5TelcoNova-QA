@@ -2,11 +2,11 @@ import Select from '@/components/atoms/Select';
 import { useState } from 'react';
 
 type UserRowProps = {
-  name: string;
-  email: string;
-  role: string;
-  onRoleChange: (newRole: string) => void;
-  onDelete: () => void;
+  readonly name: string;
+  readonly email: string;
+  readonly role: string;
+  readonly onRoleChange: (newRole: string) => void;
+  readonly onDelete: () => void;
 };
 
 export default function UserRow({ name, email, role, onRoleChange, onDelete }: UserRowProps) {

@@ -4,10 +4,10 @@ import { Incident } from "@/lib/models";
 export function IncidentRow({
   incident,
   onClick,
-}: {
+}: Readonly<{
   incident: Incident;
   onClick: () => void;
-}) {
+}>) {
   const { id, state, clientName, assignedTechnician, creationDate } = incident;
 
   const stateLabels: Record<Incident["state"], string> = {

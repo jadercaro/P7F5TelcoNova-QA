@@ -41,12 +41,12 @@ export function IncidentDialog({
 	open,
 	onOpenChange,
 	initialData,
-}: {
+}: Readonly<{
 	mode: "create" | "edit";
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
 	initialData: Incident | undefined;
-}) {
+}>) {
 	const [isSuccessOpen, setIsSuccessOpen] = useState(false);
 
 	const handleSave = () => {

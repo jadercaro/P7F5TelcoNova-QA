@@ -13,7 +13,7 @@ import { IncidentDialog } from "@/components/organisms/IncidentDialog";
 export async function getServerSideProps(
   context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<AppSidebarProps>> {
-  const cookieHeader = context.req.headers.cookie || "";
+  const cookieHeader = context.req.headers.cookie ?? "";
   const cookies = parseCookies(cookieHeader);
 
   const { username } = cookies;
@@ -36,9 +36,9 @@ export async function getServerSideProps(
 
 export default function DashboardPage({
   username,
-}: {
+}: Readonly<{
   username: string;
-}) {
+}>) {
   const [chartData, setChartData] = useState([
     { status: "ABIERTAS", incidences: 0, fill: "#A7AEAE" },
     { status: "EN PROCESO", incidences: 0, fill: "#D47846" },

@@ -1,9 +1,9 @@
 // components/atoms/Button/index.tsx
 type ButtonProps = {
-  children: React.ReactNode;
-  onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
-  className?: string;
+  readonly children: React.ReactNode;
+  readonly onClick?: () => void;
+  readonly type?: 'button' | 'submit' | 'reset';
+  readonly className?: string;
 };
 
 export default function Button({ children, onClick, type = 'button', className = '' }: ButtonProps) {

@@ -16,7 +16,7 @@ type ChartDataItem = {
 };
 
 type Props = {
-  chartData: ChartDataItem[];
+  readonly chartData: ChartDataItem[];
 };
 
 export function IncidentPieChart( { chartData}: Props) {

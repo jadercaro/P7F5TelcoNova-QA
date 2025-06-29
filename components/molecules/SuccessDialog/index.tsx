@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 export function SuccessDialog({
     open,
     onClose
-}: {
+}: Readonly<{
     open: boolean;
     onClose: () => void;
-}) {
+}>) {
     return (
         <Dialog open={open} onOpenChange={onClose}>
             <DialogContent className="bg-white text-black">

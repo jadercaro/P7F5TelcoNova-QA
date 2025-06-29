@@ -1,9 +1,9 @@
 // components/atoms/Input/index.tsx
-type InputProps = {
+type InputProps = Readonly<{
   placeholder?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
+}>;
 
 export default function Input({ placeholder, value, onChange }: InputProps) {
   return (

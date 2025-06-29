@@ -13,21 +13,23 @@ import {
 
 export function UserNav({
   user,
-}: {
+}: Readonly<{
   user: {
     name: string;
     avatar: string;
   };
-}) {
+}>) {
   const router = useRouter();
-  const [, setCurrentRole] = useState("user");
+  const [_currentRole, setCurrentRole] = useState("user");
 
-  useEffect(() => {
-    const match = document.cookie.match(/role=([^;]+)/);
-    if (match) {
-      setCurrentRole(match[1]);
-    }
-  }, []);
+useEffect(() => {
+  const regex = /role=([^;]+)/;
+  const result = regex.exec(document.cookie);
+
+  if (result && result[1]) {
+    setCurrentRole(result[1]);
+  }
+}, []);
 
 
   const logOut = () => {

@@ -5,10 +5,10 @@ import { Incident } from "@/lib/models";
 export function IncidentTable({
 	incidents,
 	onRowClick,
-}: {
+}: Readonly<{
 	incidents: Incident[];
 	onRowClick: (incident: Incident) => void;
-}) {
+}>) {
 	return (
 		<Table>
 			<TableHeader>

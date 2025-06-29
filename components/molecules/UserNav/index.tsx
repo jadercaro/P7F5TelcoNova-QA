@@ -26,7 +26,7 @@ useEffect(() => {
   const regex = /role=([^;]+)/;
   const result = regex.exec(document.cookie);
 
-  if (result && result[1]) {
+  if (result?.[1]) {
     setCurrentRole(result[1]);
   }
 }, []);

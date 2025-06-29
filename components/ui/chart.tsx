@@ -46,10 +46,11 @@ function ChartContainer({
 }) {
   const uniqueId = React.useId()
   const chartId = `chart-${id ?? uniqueId.replace(/:/g, "")}`
-  const obj = React.useMemo(() => ({config}), [config])
+  const contextValue = React.useMemo(() => ({ obj: { config } }), [config])
+
 
   return (
-    <ChartContext.Provider value={{ obj }}>
+    <ChartContext.Provider value={{ contextValue}}>
       <div
         data-slot="chart"
         data-chart={chartId}
@@ -163,7 +164,7 @@ function ChartTooltipContent({
     labelKey,
   ])
 
-  if (!active ?? !payload?.length) {
+  if (!active || !payload?.length) {
     return null
   }
 
@@ -309,7 +310,7 @@ function getPayloadConfigFromPayload(
   payload: unknown,
   key: string
 ) {
-  if (typeof payload !== "object" ?? payload === null) {
+  if (typeof payload !== "object" || payload === null) {
     return undefined
   }
 

@@ -50,7 +50,7 @@ function ChartContainer({
 
 
   return (
-    <ChartContext.Provider value={{ contextValue}}>
+    <ChartContext.Provider value={contextValue}>
       <div
         data-slot="chart"
         data-chart={chartId}
